@@ -10,21 +10,21 @@ use Tests\TestCase;
 
 class WeatherFactoryTest extends TestCase
 {
-    public function setUp(): void
+    public function setUp() : void
     {
         parent::setUp();
         Config::set('weather.providers.BlueSky', [
-            'class' => BlueSky::class,
+            'class'  => BlueSky::class,
             'apiKey' => 'test',
         ]);
     }
 
-    public function testGenerateObject(): void
+    public function testGenerateObject() : void
     {
         $this->assertInstanceOf(BlueSky::class, WeatherFactory::create(BlueSky::getConsumerName()));
     }
 
-    public function testCannotGenerateObject(): void
+    public function testCannotGenerateObject() : void
     {
         $this->ExpectException(WeatherConsumerNotFound::class);
         $this->expectExceptionMessage('Weather consumer FAKE_PROVIDER not found');

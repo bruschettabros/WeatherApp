@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 function WeatherData(props) {
     return props.data.map((item, index) => {
@@ -18,6 +18,7 @@ function WeatherData(props) {
         );
     });
 }
+
 WeatherData.propTypes = {
     data: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,

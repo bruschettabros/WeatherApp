@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function WeatherData(props) {
     let date = new Date();
@@ -28,6 +28,7 @@ function WeatherData(props) {
         </div>
     );
 }
+
 WeatherData.propTypes = {
     date: PropTypes.object.isRequired,
     setDate: PropTypes.func.isRequired,

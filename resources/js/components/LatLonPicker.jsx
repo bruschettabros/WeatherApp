@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function LatLonPicker(props) {
     return (
@@ -37,6 +37,7 @@ function LatLonPicker(props) {
         </div>
     );
 }
+
 LatLonPicker.propTypes = {
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,

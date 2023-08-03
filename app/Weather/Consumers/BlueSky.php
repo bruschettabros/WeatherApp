@@ -13,7 +13,7 @@ final class BlueSky extends AbstractWeatherConsumer
 {
     protected const BASE_URL = 'https://api.blueskyapi.io';
 
-    protected const CURRENT_URI  = '/forecasts/latest';
+    protected const CURRENT_URI = '/forecasts/latest';
 
     protected const PAST_URI = '/forecasts/history';
 
@@ -45,17 +45,18 @@ final class BlueSky extends AbstractWeatherConsumer
         if (!isset($this->lat, $this->lon)) {
             throw new LocationNotSetException('Location not set');
         }
+
         return Http::withHeaders([
             'Authorization' => sprintf('Bearer %s', $this->apiKey),
         ])->get(self::BASE_URL . $uri, [
-            'lat' => $this->lat,
-            'lon' => $this->lon,
+            'lat'     => $this->lat,
+            'lon'     => $this->lon,
             'columns' => $this->getCallColumns(),
             ...$additionalParams,
         ]);
     }
 
-    private function getCallColumns(): string
+    private function getCallColumns() : string
     {
         /*
          * These columns are defined here: https://blueskyapi.io/docs/data
@@ -70,7 +71,7 @@ final class BlueSky extends AbstractWeatherConsumer
             'pressure_at_max_wind',
             'pressure_at_surface',
             'visibility_at_surface',
-            'wind_speed_gust_at_surface'
+            'wind_speed_gust_at_surface',
         ]);
     }
 }

@@ -41,12 +41,12 @@ const WeatherMain = () => {
                     route={'/api/weather/past'}
                     additionalParams={{
                         date: date.toLocaleDateString(),
-                }}
+                    }}
                 />
             </div>
         </div>
-    )
-}
+    );
+};
 
 const root = ReactDOM.createRoot(document.getElementById('weatherMain'));
 root.render(<WeatherMain />);

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import GoogleMapReact from 'google-map-react'
+import GoogleMapReact from 'google-map-react';
 
 function LocationPin(props) {
     return null;
@@ -17,21 +17,21 @@ function LocationPicker(props) {
 
     const containerStyle = {
         width: '500px',
-        height: '420px'
+        height: '420px',
     };
 
-    const [map, setMap] = useState(null)
+    const [map, setMap] = useState(null);
 
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(center);
         map.fitBounds(bounds);
         console.log(map);
-        setMap(map)
-    }, [])
+        setMap(map);
+    }, []);
 
     const onUnmount = useCallback(function callback(map) {
-        setMap(null)
-    }, [])
+        setMap(null);
+    }, []);
 
     useEffect(() => {
         props.setLat(center.lat);
@@ -60,8 +60,8 @@ function LocationPicker(props) {
 }
 
 LocationPicker.propTypes = {
-    lat : PropTypes.number.isRequired,
-    lon : PropTypes.number.isRequired,
+    lat: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired,
     setLat: PropTypes.func.isRequired,
     setLon: PropTypes.func.isRequired,
 };
