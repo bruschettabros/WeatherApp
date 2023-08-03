@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
-function WeatherData(props) {
+function CustomDatePicker(props) {
     let date = new Date();
     date.setDate(date.getDate() - 1);
     return (
@@ -29,9 +30,9 @@ function WeatherData(props) {
     );
 }
 
-WeatherData.propTypes = {
+CustomDatePicker.propTypes = {
     date: PropTypes.object.isRequired,
     setDate: PropTypes.func.isRequired,
 };
 
-export default WeatherData;
+export default CustomDatePicker;

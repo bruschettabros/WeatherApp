@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React from 'react';
 
 function LatLonPicker(props) {
     return (
@@ -12,20 +10,22 @@ function LatLonPicker(props) {
                     <div>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <span className="input-group-text" id="lat-input">Lat</span>
+                                <span className="input-group-text" id="lat-input-span">Lat</span>
                             </div>
                             <input
                                 className={'form-control'}
+                                id={'lat-input'}
                                 value={props.lat}
                                 onChange={(event) => props.setLat(event.target.value)}
                             />
                         </div>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <span className="input-group-text" id="lon-input">Lon</span>
+                                <span className="input-group-text" id="lon-input-span">Lon</span>
                             </div>
                             <input
                                 className={'form-control'}
+                                id={'lon-input'}
                                 value={props.lon}
                                 onChange={(event) => props.setLon(event.target.value)}
                             />

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 function LocationPin(props) {
@@ -15,24 +14,6 @@ function LocationPicker(props) {
         lng: props.lon,
     };
 
-    const containerStyle = {
-        width: '500px',
-        height: '420px',
-    };
-
-    const [map, setMap] = useState(null);
-
-    const onLoad = useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-        console.log(map);
-        setMap(map);
-    }, []);
-
-    const onUnmount = useCallback(function callback(map) {
-        setMap(null);
-    }, []);
-
     useEffect(() => {
         props.setLat(center.lat);
         props.setLon(center.lng);
@@ -44,7 +25,7 @@ function LocationPicker(props) {
                 <div className="card-header">Location Picker</div>
                 <div className="card-body">
                     <GoogleMapReact
-                        bootstrapURLKeys={{ key: 'AIzaSyDo_khp7LFtQtFxNRJyyx9phTpYeHxgt4k' }}
+                        bootstrapURLKeys={{ key: import.meta.env.MAPS_API_KEY }}
                         defaultCenter={center}
                         defaultZoom={10}
                     >
