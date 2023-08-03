@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 function WeatherData(props) {
-    console.log(props.data)
     return props.data.map((item, index) => {
         console.log(item);
         return (

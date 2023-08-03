@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class WeatherRequest extends FormRequest
+class PastWeatherRequest extends FormRequest
 {
+    public const DATE_FORMAT = 'd/m/Y';
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -17,13 +19,14 @@ class WeatherRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
             'lat' => 'required|numeric',
             'lon' => 'required|numeric',
+            'date' => 'required|date_format:' . self::DATE_FORMAT . '|before_or_equal:today',
         ];
     }
 }

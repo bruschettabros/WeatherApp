@@ -1,18 +1,51 @@
-
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
 import Weather from './Weather.jsx';
+import LocationPicker from './LocationPicker.jsx';
+import DatePicker from './DatePicker.jsx';
+import LatLonPicker from './LatLonPicker.jsx';
 
 // This is a functional component
 const WeatherMain = () => {
-    const [lat, setLat] = React.useState(50);
-    const [lon, setLon] = React.useState(-1);
-    const [date, setDate] = React.useState(null);
+    const [lat, setLat] = useState(50);
+    const [lon, setLon] = useState(-1);
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const [date, setDate] = useState(yesterday);
 
     return (
-        <div>
-        <Weather title={'Current Weather'} lat={lat} lon={lon}/>
-        <Weather title={'Past Weather'} lat={lat} lon={lon}/>
+        <div className="container">
+            <div className="row justify-content-lg-end mb-3">
+                {/* <LocationPicker */}
+                {/*     lat={lat} */}
+                {/*     lon={lon} */}
+                {/*     setLat={setLat} */}
+                {/*     setLon={setLon} */}
+                {/* /> */}
+                <LatLonPicker lat={lat} lon={lon} setLat={setLat} setLon={setLon} />
+                <Weather
+                    title={'Current Weather'}
+                    lat={lat}
+                    lon={lon}
+                    additionalParams={null}
+                />
+            </div>
+            <div className="row justify-content-lg-end">
+                <DatePicker
+                    date={date}
+                    setDate={setDate}
+                />
+                <Weather
+                    title={'Past Weather'}
+                    lat={lat}
+                    lon={lon}
+                    route={'/api/weather/past'}
+                    additionalParams={{
+                        date: date.toLocaleDateString(),
+                }}
+                />
+            </div>
         </div>
     )
 }

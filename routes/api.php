@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/weather/current', [WeatherController::class, 'current'])->name('weather.current');
+Route::get('/weather/past', [WeatherController::class, 'past'])->name('weather.past');

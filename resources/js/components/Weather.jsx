@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { useEffect, useState } from 'react';
 import WeatherData from './WeatherData.jsx';
 import PropTypes from 'prop-types';
 
-function Weather({title, lat, lon, route = '/api/weather/current', additionalParams = []}) {
+function Weather({ title, lat, lon, route = '/api/weather/current', additionalParams = [] }) {
 
-    const [weather, setWeather] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
+    const [weather, setWeather] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -20,18 +19,18 @@ function Weather({title, lat, lon, route = '/api/weather/current', additionalPar
             setWeather(response.data);
             setLoading(false);
         });
-    }, [lat, lon]);
+    }, [lat, lon, additionalParams]);
     return (
-        <div className="container mb-3">
-            <div className="row justify-content-lg-end">
-                <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-header">{title}</div>
-                        <div className="card-body">
-                            <div className="weatherData">
-                                <WeatherData data={weather} loading={loading} />
+        <div className="col-md-6">
+            <div className="card h-100">
+                <div className="card-header">{title}</div>
+                <div className="card-body">
+                    <div className="weatherData">
+                        {loading
+                            ? <div className="spinner-border" role="status">
+                                <span className="sr-only"></span>
                             </div>
-                        </div>
+                            : <WeatherData data={weather} loading={loading} />}
                     </div>
                 </div>
             </div>
@@ -43,8 +42,6 @@ Weather.propTypes = {
     title: PropTypes.string.isRequired,
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
-    route: PropTypes.string.isRequired,
-    additionalParams: PropTypes.array.isRequired,
 };
 
 export default Weather;
