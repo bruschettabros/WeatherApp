@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Weather from './Weather.jsx';
-import LocationPicker from './LocationPicker.jsx';
 import DatePicker from './DatePicker.jsx';
 import LatLonPicker from './LatLonPicker.jsx';
 
@@ -17,13 +16,12 @@ const WeatherMain = () => {
     return (
         <div className="container">
             <div className="row justify-content-lg-end mb-3">
-                {/* <LocationPicker */}
-                {/*     lat={lat} */}
-                {/*     lon={lon} */}
-                {/*     setLat={setLat} */}
-                {/*     setLon={setLon} */}
-                {/* /> */}
-                <LatLonPicker lat={lat} lon={lon} setLat={setLat} setLon={setLon} />
+                <LatLonPicker
+                    lat={lat}
+                    lon={lon}
+                    setLat={setLat}
+                    setLon={setLon}
+                />
                 <Weather
                     title={'Current Weather'}
                     lat={lat}

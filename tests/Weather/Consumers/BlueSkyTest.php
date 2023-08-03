@@ -2,28 +2,37 @@
 
 namespace Tests\Weather\Consumers;
 
+use App\Weather\Adapters\BlueSky as BlueSkyAdapter;
 use App\Weather\Consumers\BlueSky;
+use App\Weather\Exceptions\LocationNotSetException;
 use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 
 class BlueSkyTest extends TestCase
 {
-    private $blueSky;
+    private BlueSky $blueSky;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->blueSky = new BlueSky('cfsSDpz96RXAaMGJIQcRaO429Nsy7cwC_OSdR3NZk91TsgilsA-dyCT6RmIxRLuBaCGTb4v4dL8h1sb88BH-pg');
-    }
-
-    public function testPing() : void
-    {
-        $ping = $this->blueSky->ping();
-        $this->assertEquals(200, $ping->status());
+        $this->blueSky = new BlueSky('test');
     }
 
     public function testConsumerName() : void
     {
         $this->assertEquals('BlueSky', BlueSky::getConsumerName());
+    }
+
+    public function testSetAdapterName(): void
+    {
+        $this->assertEquals(BlueSkyAdapter::class, $this->blueSky->getAdapter());
+    }
+
+    public function testLocationsNotSetException(): void
+    {
+        $this->expectException(LocationNotSetException::class);
+        $this->expectExceptionMessage('Location not set');
+
+        $this->blueSky->current();
     }
 }

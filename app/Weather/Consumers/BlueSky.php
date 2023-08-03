@@ -37,9 +37,12 @@ final class BlueSky extends AbstractWeatherConsumer
         ]);
     }
 
+    /**
+     * @throws LocationNotSetException
+     */
     protected function request(?string $uri = null, array $additionalParams = []) : PromiseInterface|Response
     {
-        if (!$this->lat || !$this->lon) {
+        if (!isset($this->lat, $this->lon)) {
             throw new LocationNotSetException('Location not set');
         }
         return Http::withHeaders([
