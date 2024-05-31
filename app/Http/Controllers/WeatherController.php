@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CurrentWeatherRequest;
 use App\Http\Requests\PastWeatherRequest;
-use App\Weather\Consumers\AbstractWeatherConsumer;
 use App\Weather\WeatherFactory;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Arr;
 
 class WeatherController extends Controller
 {
